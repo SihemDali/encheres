@@ -48,7 +48,7 @@ foreach ($annonces as $key => $annonce) { ?>
 <h2><?php echo $annonce["voiture_marque"]. " : ". $annonce["voiture_modele"]. " , année: " . $annonce["voiture_annee"] ;?></h2>
 <p> Prix de réserve : <?php echo $annonce["prix_depart"]; ?></p>
 <p> Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
-<a href="detail_annonce.php">Detail de l'annonce: </a>
+<a href="detail_annonce.php?id=<?php echo $annonce["id"];?> ">Detail de l'annonce </a>
 
 <?php  }
 ?>

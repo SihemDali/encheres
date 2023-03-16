@@ -1,4 +1,4 @@
-<!-- <?php
+ <?php
 require __DIR__."/class/Annonce.php";
 require __DIR__."/pdo.php";
 
@@ -7,12 +7,25 @@ if(isset($_POST["submit_add_annonce"])) {
     $annonce2->save($pdo);
 }
 
-?>
-creation d'une page pdo.php
-<?php
-$pdo = new PDO("mysql:dbname=enchere;host=localhost", "root", "");
-?> -->
 
+// On prépare une requête
+$query = $pdo->prepare('SELECT * FROM annonce WHERE id = :id');
+
+// On remplace la variable intermédiaire
+$query->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+
+// On execute la requête
+$query->execute();
+
+// On récupère l'utilisateur dans un tableau associatif
+// On utilise fetch si on récupère un seul élement
+$annonce = $query->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +40,16 @@ $pdo = new PDO("mysql:dbname=enchere;host=localhost", "root", "");
     
     <img src="" alt="">
    
-    <?php echo "Votre annonce a été ajoutée avec succès!";?>
-    <p>Détails annonce: </p>
+    <h2><?php echo "Votre annonce a été ajoutée avec succès!";?></h2> <br>
+    <h3>Détails annonce:<?php echo $annonce["voiture_modele"]; ?> </h3>
+    <p>Date de réserve : <?php echo $annonce["prix_depart"]; ?></p>
+    <p>Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
+    <p>Modèle : <?php echo $annonce["voiture_modele"]; ?></p>
+    <p>Marque : <?php echo $annonce["voiture_marque"]; ?></p>
+    <p>Puissance : <?php echo $annonce["voiture_puissance"]; ?></p>
+    <p>Année : <?php echo $annonce["voiture_annee"]; ?></p>
+    <p>Couleur : <?php echo $annonce["voiture_couleur"]; ?></p>
+    <p>Description : <?php echo $annonce["voiture_description"]; ?></p>
 
-
-    
 </body>
 </html>

@@ -3,9 +3,10 @@ require_once __DIR__."/pdo.php";
 require_once __DIR__."/menu.php";
 
 if(isset($_POST["submit_add_annonce"])) {
-    $query = $pdo->prepare("INSERT INTO annonce (prix_depart, date_fin, voiture_modele, voiture_marque, voiture_puissance, voiture_annee, voiture_couleur, voiture_description, utilisateur_id) VALUES (:prix_depart, :date_fin, :voiture_modele, :voiture_marque, :voiture_puissance, :voiture_annee, :voiture_couleur, :voiture_description, :utilisateur_id)");
+    $query = $pdo->prepare("INSERT INTO annonce (prix_depart, date_fin, voiture_modele, voiture_marque, voiture_puissance, voiture_annee, voiture_couleur, voiture_description, utilisateur_id) VALUES (:prix_de_
+    depart, :date_fin, :voiture_modele, :voiture_marque, :voiture_puissance, :voiture_annee, :voiture_couleur, :voiture_description, :utilisateur_id)");
 
-    $query->bindValue(':prix_depart', $_POST["prix_de_depart"], PDO::PARAM_STR);
+    $query->bindValue(':prix_depart', $_POST["prix_depart"], PDO::PARAM_STR);
     $query->bindValue(':date_fin', $_POST["date_fin"], PDO::PARAM_STR);
     $query->bindValue(':voiture_modele', $_POST["voiture_modele"], PDO::PARAM_STR);
     $query->bindValue(':voiture_marque', $_POST["voiture_marque"], PDO::PARAM_STR);
@@ -58,8 +59,8 @@ if(isset($_POST["submit_add_annonce"])) {
 <h1>Déposer une annonce</h1>
 <form action="" method="post">
     <p>
-        <label for="prix_de_depart">Prix de réserve: </label>
-        <input type="number" name="prix_de_depart" id="prix_de_depart" min="500">
+        <label for="prix_depart">Prix de réserve: </label>
+        <input type="number" name="prix_depart" id="prix_depart" min="500">
     </p>
     <p>
         <label for="date_fin">Date de fin des enchères: </label>
