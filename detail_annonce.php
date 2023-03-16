@@ -22,7 +22,10 @@ $query->execute();
 $annonce = $query->fetch(PDO::FETCH_ASSOC);
 
 
+// DEUXIEME REQUETE POUR LE FORMILAIRE
 
+
+// TROISIEME REQUETE POUR RECUP ENCHERE 
 
 
 ?>
@@ -50,6 +53,13 @@ $annonce = $query->fetch(PDO::FETCH_ASSOC);
     <p>Année : <?php echo $annonce["voiture_annee"]; ?></p>
     <p>Couleur : <?php echo $annonce["voiture_couleur"]; ?></p>
     <p>Description : <?php echo $annonce["voiture_description"]; ?></p>
+
+    <form method="post">
+        <p>
+            <input type="text">
+        </p>
+        <input type="submit" value="Valider enchère">
+    </form>
 
 </body>
 </html>

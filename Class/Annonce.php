@@ -10,6 +10,7 @@ class Annonce {
     protected int $voiture_annee;
     protected string $voiture_couleur;
     protected string $voiture_description;
+    protected string $utilisateur_id;
 
     public function __construct(
         int $prix_depart,
@@ -19,7 +20,8 @@ class Annonce {
         int $voiture_puissance,
         int $voiture_annee,
         string $voiture_couleur,
-        string $voiture_description)
+        string $voiture_description,
+        string $utilisateur_id)
     {
       $this->setPrixDepart($prix_depart);
       $this->setDateFin($date_fin);
@@ -29,6 +31,7 @@ class Annonce {
       $this->setVoitureAnnee($voiture_annee);
       $this->setVoitureCouleur($voiture_couleur);
       $this->setVoitureDescription($voiture_description);
+      $this->utilisateur_id
 
 
     }
