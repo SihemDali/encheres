@@ -77,7 +77,7 @@ function verification() {
 
 
             echo "Votre compte a bien été créé!";
-            //redirection
+            //redirection vers connexion
             header("Location: connexion.php");
         } else {
             echo "Tous les champs sont nécessaires";
