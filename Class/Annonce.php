@@ -31,7 +31,7 @@ class Annonce {
       $this->setVoitureAnnee($voiture_annee);
       $this->setVoitureCouleur($voiture_couleur);
       $this->setVoitureDescription($voiture_description);
-      $this->utilisateur_id
+      $this->utilisateur_id;
 
 
     }
