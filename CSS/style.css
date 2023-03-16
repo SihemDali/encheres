@@ -1,0 +1,62 @@
+footer { 
+    display: flex;    
+    justify-content: center;
+    align-items: center;  
+    background-color: #FFBC80;
+
+    bottom: 0;
+    margin-bottom: 0px;
+    margin-top: 130px;
+    width: 100vw;
+   
+}
+
+header{
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F76E11;
+  color: white; 
+  
+}
+
+img {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; 
+    margin-right: 0;
+    
+
+}
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; 
+    gap: 10px;
+    margin-right: 0;
+}
+
+li {
+   
+    list-style: none;
+    margin-right: 0;
+ 
+}
+
+.a_menu {
+   color: white;
+
+}
+body {
+
+    background-image:url(/images/automobile-383897_640.jpg);
+
+ }
