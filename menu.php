@@ -12,6 +12,13 @@ $menuFooter = [
     "mentions.php" => "Mentions légales",
     "politique.php" => "Politique de confidentialite"
 ];
+$menudeconnexion =[
+    "index.php" => "Accueil", 
+    "ajout_annonce.php" => "Créer une annonce", 
+    "inscription.php" => "Inscription",
+    "deconnexion.php" => "Déconnexion",
+
+];
 
 function afficher_menu($nom, $liens, $afficherNom = true) { ?>
     <nav>

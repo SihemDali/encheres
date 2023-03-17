@@ -58,6 +58,10 @@ function verification() {
         <label for="password">Mot de passe:</label>
         <input type="password" name="password" id="password">
     </p>
+    <p>
+        <label for="confirm_password">Confirmation mot de passe:</label>
+        <input type="password" name="confirm_password" id="confirm_password">
+    </p>
     <p class="input">
     <input type="submit" value="Inscription" name="submit_inscription">
     </p>

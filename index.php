@@ -14,7 +14,6 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,11 +27,20 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
 <body >
 
 <header>
-    <img src="/images/mini-cooper-s-front.jpg" alt="" width="20">
+  
     <h1>AFFAIRE . CONCLUE . AUTO</h1>
     
 <?php 
-        afficher_menu("Menu principal", $menuPrincipal, false );
+include __DIR__ . "/session.php";
+if (isset($_SESSION["nom"])){
+   // echo $_SESSION["nom"];
+    afficher_menu("Menu principal", $menudeconnexion, false );
+}
+else {
+    afficher_menu("Menu principal", $menuPrincipal, false );
+}
+        
+
 ?>
 </header>
 
@@ -41,7 +49,7 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <main class="annonces">
- 
+
 
 <?php
 foreach ($annonces as $key => $annonce) { ?>
@@ -52,9 +60,9 @@ foreach ($annonces as $key => $annonce) { ?>
 <p> Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
 <a href="detail_annonce.php?id=<?php echo $annonce["id"];?> ">Detail de l'annonce </a>
 </div>
-<?php  }
-?>
 
+<?php }
+?>
 </main>
 
 
