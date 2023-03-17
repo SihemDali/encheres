@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__."/pdo.php";
 require_once __DIR__."/menu.php";
-require_once __DIR__."/session.php";
+// require_once __DIR__."/session.php";
 
 
 if(isset($_POST["submit_add_annonce"])) {
@@ -19,7 +19,7 @@ if(isset($_POST["submit_add_annonce"])) {
     
     $resultat = $query->execute();
 
-    //header("Location: detail_annonce.php"); 
+    header("Location: detail_annonce.php"); 
  
 }
 
@@ -48,24 +48,20 @@ if(isset($_POST["submit_add_annonce"])) {
 
 <p >
     <?php
-   if(isset($_SESSION["$user"])){
-        if(isset($_POST["submit_add_annonce"])) {
-            $query = $pdo->prepare("INSERT INTO annonce (prix_depart, date_fin, voiture_modele, voiture_marque, voiture_puissance, voiture_annee, voiture_couleur, voiture_description, utilisateur_id) VALUES (:prix_depart, :date_fin, :voiture_modele, :voiture_marque, :voiture_puissance, :voiture_annee, :voiture_couleur, :voiture_description, :utilisateur_id)");
-        
-            echo " Votre annonce a bien été ajoutée! ";
-             }
-    }
-    // else {
-    //     return false;
 
-    //     //header("Location: .php"); 
-        
-    // }
+        if(isset($_POST["submit_add_annonce"])) {
+
+            $query = $pdo->prepare("INSERT INTO annonce (prix_depart, date_fin, voiture_modele, voiture_marque, voiture_puissance, voiture_annee, voiture_couleur, voiture_description, utilisateur_id) VALUES (:prix_depart, :date_fin, :voiture_modele, :voiture_marque, :voiture_puissance, :voiture_annee, :voiture_couleur, :voiture_description, :utilisateur_id)");
+            header("Location: detail_annonce.php");
+
+             }
+
+
 ?>
 </p>
 <section class="form_style">
 <h1>Déposer une annonce</h1>
-<form  method="post" >
+<form  action= detail_annonce.php method="post" >
     <p>
         <label for="prix_depart">Prix de réserve: </label>
         <input type="number" name="prix_depart" id="prix_depart" min="500">
@@ -88,7 +84,7 @@ if(isset($_POST["submit_add_annonce"])) {
     </p>
     <p>
         <label for="voiture_annee">Année: </label>
-        <input type="number" name="voiture_annee" id="voiture_annee">
+        <input type="number" name="voiture_annee" id="voiture_annee" min=1970>
     </p>
     <p>
         <label for="voiture_couleur">Couleur: </label>

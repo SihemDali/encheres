@@ -31,7 +31,7 @@ class Annonce {
       $this->setVoitureAnnee($voiture_annee);
       $this->setVoitureCouleur($voiture_couleur);
       $this->setVoitureDescription($voiture_description);
-      $this->utilisateur_id;
+      $this->setUtilisateuId($utilisateur_id);
 
 
     }
@@ -196,6 +196,25 @@ class Annonce {
     public function setVoitureDescription(string $voiture_description): self
     {
         $this->voiture_description = $voiture_description;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of utilisateur_id
+     */
+    public function getUtilisateurId(): int
+    {
+        return $this->utilisateur_id;
+    }
+
+    /**
+     * Set the value of voiture_description
+     */
+    public function setUtilisateuId(string $utilisateur_id): self
+    {
+        $this->utilisateur_id = 1;
 
         return $this;
     }
