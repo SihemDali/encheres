@@ -1,31 +1,32 @@
+html, body {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
 footer { 
     display: flex;    
     justify-content: center;
     align-items: center;  
-    background-color: #FFBC80;
-
-    bottom: 0;
-    margin-bottom: 0px;
-    margin-top: 130px;
-    width: 100vw;
+    background-color:#EEEEEE;
    
+    
+
+    margin-bottom: 0px; 
+    margin-top: 40px;
+    position : absolute ;
+    bottom: 0;
+    width: 100%;
+    height: 30px;     
+    position: fixed;    
+       
 }
 
-header{
- 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #F76E11;
-  color: white; 
-  
+body {
+    position: relative;
 }
-
-img {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* For IE8 and earlier */
-}
-
 nav {
     display: flex;
     align-items: center;
@@ -55,8 +56,96 @@ li {
    color: white;
 
 }
-body {
+.image_fond {
+      
+    left: 0;
+    top: 10;
+    width: 100%;
+    height: 100vh; 
+    opacity: 0.6;
+    background-image: url('/enchere/images/mini-cooper-s-front\ coupée\ 2.jpg');   
+    background-size: cover;   
+    position: relative;
+    position: fixed;
+   
+  
+}
 
-    background-image:url(/images/automobile-383897_640.jpg);
+header{
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #303841;
+    color: white;  
+   
+  
+}
 
- }
+.form_style {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-left: 200;
+    margin-top: 50px;
+    padding-top: 0;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+    background-color: #00ADB5;
+    position: absolute;
+    border: 5px solid black;
+
+    
+}
+
+input[type=submit] {
+    width: 150px;
+    padding: 10px;   
+    border:1px solid #F5C5C5;
+    border-radius:5px; 
+    width:120px;
+    box-shadow:1px 1px 1px #D83F3D;
+    cursor:pointer;
+  
+    
+  }
+  .input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+
+  input:focus {
+    background: #9EF4E6;
+  }   
+  label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+  }
+
+  .annonces {   
+    width: 1300px;
+    margin: auto;
+    display: flex;   
+    font-size: larger;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+  }
+
+  .annonce {
+    border: 2px solid  #00ADB5;
+    padding: 35px;
+    background-color: #EEEEEE;
+    
+  }
+  h2 {
+    margin-bottom: 0;
+  }

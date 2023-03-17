@@ -3,9 +3,6 @@
 require __DIR__."/pdo.php";
 require_once __DIR__."/menu.php";
 
-
-
-
 $query = $pdo->prepare('SELECT * FROM annonce');
 
 
@@ -28,35 +25,42 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 
 </head>
-<body>
+<body >
 
 <header>
+    <img src="/images/mini-cooper-s-front.jpg" alt="" width="20">
     <h1>AFFAIRE . CONCLUE . AUTO</h1>
-    <img src="/images/Mini.jpg" alt="imagemini">
+    
 <?php 
         afficher_menu("Menu principal", $menuPrincipal, false );
 ?>
 </header>
 
+<div>
+<img src="/images/Mini.jpg" alt="" class="image_fond">
+</div>
 
-<main>  
+<main class="annonces">
  
 
 <?php
 foreach ($annonces as $key => $annonce) { ?>
 
 <h2><?php echo $annonce["voiture_marque"]. " : ". $annonce["voiture_modele"]. " , année: " . $annonce["voiture_annee"] ;?></h2>
+<div class="annonce">
 <p> Prix de réserve : <?php echo $annonce["prix_depart"]; ?></p>
 <p> Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
 <a href="detail_annonce.php?id=<?php echo $annonce["id"];?> ">Detail de l'annonce </a>
-
+</div>
 <?php  }
 ?>
 
 </main>
 
 
-<?php require_once __DIR__."/footer.php"; ?>
+<div>
+<?php require_once __DIR__."/footer.php"; ?>  
+</div>
 
 </body>
 </html>

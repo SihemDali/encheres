@@ -38,6 +38,7 @@ function verification() {
         afficher_menu("Menu principal", $menuPrincipal, false );
 ?>
 </header>
+<section class="form_style">
 
     <h1>Inscription: </h1>
     <form action="" method="post">
@@ -57,11 +58,11 @@ function verification() {
         <label for="password">Mot de passe:</label>
         <input type="password" name="password" id="password">
     </p>
-    <p>
+    <p class="input">
     <input type="submit" value="Inscription" name="submit_inscription">
     </p>
     </form>
-
+</section> 
     <?php
     if (isset($_POST["submit_inscription"])) {
         $resultat2 = verification();
@@ -71,6 +72,7 @@ function verification() {
             $query->bindValue(':nom', $_POST["nom"], PDO::PARAM_STR);
             $query->bindValue(':prenom', $_POST["prenom"], PDO::PARAM_STR);
             $query->bindValue(':email', $_POST["email"], PDO::PARAM_STR);
+            //Pour chiffrer le password: utiliser fonction password_hash
             $password=$_POST["password"];
             $query->bindValue(':password', password_hash($password,PASSWORD_DEFAULT), PDO::PARAM_STR);   
             
