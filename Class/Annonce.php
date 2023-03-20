@@ -1,6 +1,7 @@
 <?php
 
-class Annonce {
+class Annonce
+{
     protected int $id;
     protected int $prix_depart;
     protected string $date_fin;
@@ -15,28 +16,26 @@ class Annonce {
     public function __construct(
         int $prix_depart,
         string $date_fin,
-        string $voiture_modele, 
+        string $voiture_modele,
         string $voiture_marque,
         int $voiture_puissance,
         int $voiture_annee,
         string $voiture_couleur,
         string $voiture_description,
-        string $utilisateur_id)
-    {
-      $this->setPrixDepart($prix_depart);
-      $this->setDateFin($date_fin);
-      $this->setVoitureModele ($voiture_modele);
-      $this->setVoitureMarque ($voiture_marque);
-      $this->setVoiturePuissance($voiture_puissance);
-      $this->setVoitureAnnee($voiture_annee);
-      $this->setVoitureCouleur($voiture_couleur);
-      $this->setVoitureDescription($voiture_description);
-      $this->setUtilisateuId($utilisateur_id);
-
-
+        string $utilisateur_id
+    ) {
+        $this->setPrixDepart($prix_depart);
+        $this->setDateFin($date_fin);
+        $this->setVoitureModele($voiture_modele);
+        $this->setVoitureMarque($voiture_marque);
+        $this->setVoiturePuissance($voiture_puissance);
+        $this->setVoitureAnnee($voiture_annee);
+        $this->setVoitureCouleur($voiture_couleur);
+        $this->setVoitureDescription($voiture_description);
+        $this->utilisateur_id;
     }
 
-    
+
 
     /**
      * Get the value of id
@@ -200,22 +199,25 @@ class Annonce {
         return $this;
     }
 
-
-    /**
-     * Get the value of utilisateur_id
-     */
-    public function getUtilisateurId(): int
+    public function save($pdo)
     {
-        return $this->utilisateur_id;
-    }
 
-    /**
-     * Set the value of voiture_description
-     */
-    public function setUtilisateuId(string $utilisateur_id): self
-    {
-        $this->utilisateur_id = 1;
+        if (isset($_POST["submit_add_annonce"])) {
+            $query = $pdo->prepare("INSERT INTO annonce (prix_depart, date_fin, voiture_modele, voiture_marque, voiture_puissance, voiture_annee, voiture_couleur, voiture_description, utilisateur_id) VALUES (:prix_depart, :date_fin, :voiture_modele, :voiture_marque, :voiture_puissance, :voiture_annee, :voiture_couleur, :voiture_description, :utilisateur_id)");
 
-        return $this;
+            $query->bindValue(':prix_depart', $_POST["prix_depart"], PDO::PARAM_STR);
+            $query->bindValue(':date_fin', $this->getDateFin(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_modele', $this->getVoitureModele(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_marque', $this->getVoitureMarque(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_puissance', $this->getVoiturePuissance(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_annee', $this->getVoitureAnnee(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_couleur', $this->getVoitureCouleur(), PDO::PARAM_STR);
+            $query->bindValue(':voiture_description', $this->getVoitureDescription(), PDO::PARAM_STR);
+            $query->bindValue(':utilisateur_id', $_SESSION["id"], PDO::PARAM_STR);
+
+            $resultat = $query->execute();
+
+            header("Location: detail_annonce.php");
+        }
     }
 }

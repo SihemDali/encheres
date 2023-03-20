@@ -1,7 +1,8 @@
 <?php
 
-require __DIR__."/pdo.php";
-require_once __DIR__."/menu.php";
+require __DIR__ . "/pdo.php";
+require_once __DIR__ . "/menu.php";
+include __DIR__ . "/session.php";
 
 $query = $pdo->prepare('SELECT * FROM annonce');
 
@@ -14,8 +15,10 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,61 +27,61 @@ $annonces = $query->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 
 </head>
-<body >
 
-<header>
-  
-    <h1>AFFAIRE . CONCLUE . AUTO</h1>
-    
-<?php 
-include __DIR__ . "/session.php";
-if (isset($_SESSION["nom"])){
-   // echo $_SESSION["nom"];
-    afficher_menu("Menu principal", $menudeconnexion, false );
-}
-else {
-    afficher_menu("Menu principal", $menuPrincipal, false );
-}
-        
+<body>
+    <div>
+        <img src="/images/Mini.jpg" alt="" class="image_fond">
+    </div>
 
-?>
-</header>
+    <header>
 
-<div>
-<img src="/images/Mini.jpg" alt="" class="image_fond">
-</div>
-
-<main class="annonces">
+        <h1>AFFAIRE . CONCLUE . AUTO</h1>
 
 
-<?php
-foreach ($annonces as $key => $annonce) { ?>
-
-<h2><?php echo $annonce["voiture_marque"]. " : ". $annonce["voiture_modele"]. " , année: " . $annonce["voiture_annee"] ;?></h2>
-<div class="annonce">
-<p> Prix de réserve : <?php echo $annonce["prix_depart"]; ?></p>
-<p> Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
-<a href="detail_annonce.php?id=<?php echo $annonce["id"];?> ">Detail de l'annonce </a>
-</div>
-
-<?php }
-?>
-</main>
+        <div>
+            <?php
+            if (isset($_SESSION["id"])) {
 
 
-<div>
-<?php require_once __DIR__."/footer.php"; ?>  
-</div>
+                afficher_menu("Menu principal", $menudeconnexion, false);
+            }   ?>
+        </div>
+
+        <div class="bonjour">
+            <?php
+            if (isset($_SESSION["nom"])) {
+
+                echo " " . " Bonjour" . " " . $_SESSION["nom"]  . " " . $_SESSION["prenom"] . " ! ";    ?>
+            <?php } else {
+                afficher_menu("Menu principal", $menuPrincipal, false);
+            } ?>
+            </p>
+
+
+    </header>
+
+
+
+    <main class="annonces">
+        <h1 class="titre_annonces"> Annonces en cours </h1>
+        <?php
+        foreach ($annonces as $key => $annonce) { ?>
+            <h2 class="titre_index"><?php echo $annonce["voiture_marque"] . " : " . $annonce["voiture_modele"] . " , année: " . $annonce["voiture_annee"]; ?></h2>
+            <div class="annonce">
+                <p> Prix de réserve : <?php echo $annonce["prix_depart"]; ?></p>
+                <p> Date de fin des enchères : <?php echo $annonce["date_fin"]; ?></p>
+                <a href="detail_annonce.php?id=<?php echo $annonce["id"]; ?> ">Détails de l'annonce </a>
+            </div>
+        <?php  }
+        ?>
+
+    </main>
+
+
+    <div>
+        <?php require_once __DIR__ . "/footer.php"; ?>
+    </div>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-

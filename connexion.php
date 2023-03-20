@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/pdo.php";
 require_once __DIR__ . "/menu.php";
+include __DIR__ . "/session.php";
+//demarrer une session en haut de page, pour avoir accès au tableau $_SESSION dans les pages sur lesquelles on a besoin d'être connecté
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +17,10 @@ require_once __DIR__ . "/menu.php";
 </head>
 
 <body>
+    <div>
+        <img src="/images/Mini.jpg" alt="" class="image_fond">
+    </div>
+
     <header>
         <h1>AFFAIRE . CONCLUE . AUTO</h1>
 
@@ -22,9 +28,12 @@ require_once __DIR__ . "/menu.php";
         afficher_menu("Menu principal", $menuPrincipal, false);
         ?>
     </header>
+
+
+
     <section class="form_style">
         <h1>Connexion: </h1>
-        <form  method="post">
+        <form method="post">
             <p>
                 <label for="email">Email: </label>
                 <input type="email" name="email" id="email">
@@ -35,68 +44,50 @@ require_once __DIR__ . "/menu.php";
             </p>
 
             <p class="input">
-                <input type="submit" value="Connexion" name="submit_connexion">
+                <input type="submit" value="Se connecter" name="submit_connexion">
             </p>
         </form>
-    </section>
-    <?php
+        <?php
 
 
-    if (isset($_POST["submit_connexion"])) {
-        $query = $pdo->prepare('SELECT * FROM utilisateur WHERE email = :email');
-        $query->bindValue(':email', $_POST["email"], PDO::PARAM_STR);
-        $query->execute();
-        $user = $query->fetchAll();
-        $nombre = $query->rowCount();
-        if ($nombre === 0) {
-    ?>
-            <p> Email inexistant! </p>
-            <?php
- }
-if ($nombre >0) {
-    if ($user) {
-        foreach ($user as $key => $value) {
-            $email = $value["email"];
-            $nom = $value["nom"];
-            $password = $value["mot_de_passe"];
+        if (isset($_POST["submit_connexion"])) {
+            $query = $pdo->prepare('SELECT * FROM utilisateur WHERE email = :email');
+            $query->bindValue(':email', $_POST["email"], PDO::PARAM_STR);
+            $query->execute();
+            $user = $query->fetch();
 
-            if (password_verify($_POST["password"], $password)) {
-                include __DIR__ . "/session.php";
-                $_SESSION["user"] = $user;
-                $_SESSION["email"] = $email;
-                $_SESSION["nom"] = $nom;
+            //var_dump($user);
+            if ($user) {
 
-                header("Location: index.php");
-                //echo "Bonjour" ." ". $_SESSION["nom"]." ! ";
-               
-            
-            } 
-            else {  ?>
+                if (password_verify($_POST["password"], $user["mot_de_passe"])) {
 
+                    $_SESSION["user"] = $user;
+                    $_SESSION["email"] = $user["email"];
+                    $_SESSION["nom"] = $user["nom"];
+                    $_SESSION["prenom"] = $user["prenom"];
+                    $_SESSION["id"] = $user["id"];
+
+                    $_SESSION["user"] = $user;
+                    //un tableau de session, est juste un tableau dans lequel on sauvegarde ce dont on a besoin: email, id...
+                    header("Location: index.php");
+                    //echo "Bonjour" ." ". $_SESSION["nom"]." ! ";              
+
+                } else {  ?>
+
+                    <p> Email ou mot de passe incorrect! </p>
+                <?php
+
+                }
+            } else { ?>
                 <p> Email ou mot de passe incorrect! </p>
-    <?php
-            }
-        } }
-       
-  
-    }
+        <?php }
+        }
 
-}
-        
-    
+        ?>
+    </section>
 
 
-
-
-
-
-
-
-
-
-    require_once __DIR__ . "/footer.php"; ?>
-
-
+    <?php require_once __DIR__ . "/footer.php"; ?>
 </body>
 
 </html>
