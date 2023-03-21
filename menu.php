@@ -14,6 +14,7 @@ $menuFooter = [
 $menudeconnexion = [
     "index.php" => "Accueil",
     "ajout_annonce.php" => "Créer une annonce",
+    "modification_profil.php" => "Editer profil",
     "deconnexion.php" => "Se déconnecter",
     "contact.php" => "Contact",
 
