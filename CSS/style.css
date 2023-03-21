@@ -59,11 +59,20 @@ li {
   margin-right: 0; 
 }
 
+nav ul li:hover {
+  background-color: #EEEEEE !important;
+}
+
 .a_menu {
  color: white;
  list-style: none;
  text-decoration: none;
 
+}
+
+.a_menu:hover{
+  color: black;
+ 
 }
 .image_fond {      
   left: 0;
